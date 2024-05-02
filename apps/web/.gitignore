@@ -13,6 +13,7 @@ dist-ssr
 *.local
 .env
 .turbo
+src/lib
 
 # Editor directories and files
 .vscode/*
