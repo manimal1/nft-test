@@ -1,0 +1,27 @@
+{
+  "name": "nft-test",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "dev:testnet": "npm run dev --workspace web",
+    "compile": "turbo run compile --filter=./apps/protocol",
+    "deploy": "turbo run deploy --filter=./apps/protocol"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "prettier": "^3.2.5",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@9.6.7",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "59141": {
+    "name": "Linea",
+    "symbol": "LineaETH",
+    "blockExplorer": "https://sepolia.lineascan.build",
+    "rpcUrl": "https://rpc.sepolia.linea.build",
+    "contractAddress": "0x96208E22D7Ead2e255D23b05B00771A4FD07F8e8"
+  }
+}

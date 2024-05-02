@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .header {
+    @apply mb-6 text-4xl font-bold;
+  }
+
+  .title {
+    @apply text-2xl font-bold;
+  }
+
+  .title-white {
+    @apply title text-white;
+  }
+
+  .card {
+    @apply border-2 p-4 rounded-lg;
+  }
+
+  .card-primary {
+    @apply card border-purple-600;
+  }
+
+  .card-sm {
+    @apply card w-[320px];
+  }
+
+  .card-primary-sm {
+    @apply card-primary w-[320px];
+  }
+
+  .card-secondary {
+    @apply card bg-purple-950 text-white;
+  }
+
+  .button {
+    @apply rounded-lg bg-purple-600 text-white text-xl p-3 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed;
+  }
+
+  .appbar {
+    @apply bg-purple-800 flex justify-between items-center p-3 text-white;
+  }
+}

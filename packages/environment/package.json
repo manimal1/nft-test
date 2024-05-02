@@ -1,0 +1,11 @@
+{
+  "name": "environment",
+  "version": "0.0.1",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "typescript": "^5.2.2",
+    "viem": "^2.9.28"
+  }
+}
