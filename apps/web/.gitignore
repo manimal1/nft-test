@@ -13,7 +13,8 @@ dist-ssr
 *.local
 .env
 .turbo
-src/lib
+.eslintcache
+src/lib/artifacts
 
 # Editor directories and files
 .vscode/*
