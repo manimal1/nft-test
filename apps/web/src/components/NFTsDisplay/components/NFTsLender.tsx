@@ -1,9 +1,12 @@
+import { useCallback, useEffect, useState } from "react";
 import { HiTag } from "react-icons/hi";
-import { Address, zeroAddress } from "viem";
+import { Address, isAddress, zeroAddress } from "viem";
+import { toAddress } from "~/utils";
 
 interface NFTsLenderProps {
-  lendNFT: (tokenId: string, borrower: Address) => void;
+  lendNFT: (tokenId: string, borrower: Address) => Promise<void>;
   isLoading: boolean;
+  isLendingConfirmed: boolean;
   isLendingDisabled: boolean;
   selectedTokenId?: number | string;
   setSelectedTokenId: (tokenId: string) => void;
@@ -12,20 +15,32 @@ interface NFTsLenderProps {
 export function NFTsLender({
   lendNFT,
   isLoading,
+  isLendingConfirmed,
   isLendingDisabled,
   selectedTokenId,
   setSelectedTokenId,
 }: NFTsLenderProps) {
+  const [borrower, setBorrower] = useState("");
+
+  const clearForm = useCallback(() => {
+    setSelectedTokenId("");
+    setBorrower("");
+  }, [setSelectedTokenId]);
+
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!selectedTokenId) {
+    if (!selectedTokenId || !isAddress(toAddress(borrower))) {
       return;
     }
 
-    const formData = new FormData(e.target as HTMLFormElement);
-    const borrower = formData.get("borrower") as Address;
-    lendNFT(selectedTokenId.toString(), borrower);
+    lendNFT(selectedTokenId.toString(), toAddress(borrower));
   }
+
+  useEffect(() => {
+    if (isLendingConfirmed) {
+      clearForm();
+    }
+  }, [clearForm, isLendingConfirmed]);
 
   return (
     <div>
@@ -48,6 +63,8 @@ export function NFTsLender({
           </label>
           <input
             name="borrower"
+            value={borrower}
+            onChange={(e) => setBorrower(e.target.value)}
             placeholder={`${zeroAddress}`}
             required
             className="border border-slate-900 p-1 rounded w-full mb-4"

@@ -11,7 +11,12 @@ import { NFTsOwned } from "./components/NFTsOwned";
 export default function NFTsDisplayRoute() {
   const { chainInfo, wallet } = useConnection();
   const { isConfirming, isPending, isMintingDisabled, mintNFT } = useMintNft();
-  const { isConfirming: isLendingConfirming, isPending: isLendingPending, lendNFT } = useLendNft();
+  const {
+    isConfirming: isLendingConfirming,
+    isPending: isLendingPending,
+    isConfirmed: isLendingConfirmed,
+    lendNFT,
+  } = useLendNft();
 
   const [selectedTokenId, setSelectedTokenId] = useState<string | undefined>(undefined);
 
@@ -35,6 +40,7 @@ export default function NFTsDisplayRoute() {
             />
             <NFTsLender
               lendNFT={lendNFT}
+              isLendingConfirmed={isLendingConfirmed}
               isLoading={isLendingLoading}
               isLendingDisabled={isLendingDisabled}
               selectedTokenId={selectedTokenId}
