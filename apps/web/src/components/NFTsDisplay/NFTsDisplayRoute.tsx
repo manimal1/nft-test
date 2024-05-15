@@ -32,7 +32,7 @@ export default function NFTsDisplayRoute() {
     <div>
       {chainInfo.contractAddress ? (
         <>
-          <div className="flex flex-wrap justify-center space-x-6">
+          <div className="flex flex-wrap justify-center space-y-4 space-x-0 md:space-x-6 md:space-y-0">
             <NFTsMinter
               mintNFT={mintNFT}
               isLoading={isMintingLoading}

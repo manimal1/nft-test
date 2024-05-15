@@ -8,7 +8,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "dev:testnet": "npm run dev --workspace web",
     "compile": "turbo run compile --filter=./apps/protocol",
-    "deploy": "turbo run deploy --filter=./apps/protocol"
+    "deploy": "turbo run deploy --filter=./apps/protocol",
+    "generate": "turbo run generate --filter=./apps/web"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",

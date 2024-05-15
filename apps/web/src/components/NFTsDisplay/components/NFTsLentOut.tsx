@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { abi } from "../../../lib/artifacts/contracts/SimpleNFT.sol/SimpleNFT.json";
-
-import { useReadContract } from "wagmi";
+import { useReadSimpleNftGetLentNfTsByWallet } from "~/generated";
 import { useConnection } from "~/providers/ConnectionProvider";
 
 interface NFTsLentOutProps {
@@ -10,18 +8,18 @@ interface NFTsLentOutProps {
 
 export function NFTsLentOut({ isLoading }: NFTsLentOutProps) {
   const { chainInfo, wallet } = useConnection();
-  const [lentNFTs, setLentNFTs] = useState<bigint[]>([]);
+  const [lentNFTs, setLentNFTs] = useState<readonly bigint[]>([]);
 
-  const { data, refetch } = useReadContract({
+  const { data, refetch } = useReadSimpleNftGetLentNfTsByWallet({
     address: chainInfo.contractAddress,
-    abi,
-    functionName: "getLentNFTsByWallet",
     args: [wallet.address],
   });
 
   useEffect(() => {
     refetch();
-    setLentNFTs(data as unknown as bigint[]);
+    if (data) {
+      setLentNFTs(data);
+    }
   }, [data, isLoading, refetch]);
 
   return (

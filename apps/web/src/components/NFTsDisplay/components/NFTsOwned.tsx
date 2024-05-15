@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { abi } from "../../../lib/artifacts/contracts/SimpleNFT.sol/SimpleNFT.json";
-
-import { useReadContract } from "wagmi";
+import { useReadSimpleNftGetNfTsByWallet } from "~/generated";
 import { useConnection } from "~/providers/ConnectionProvider";
 
 interface NFTsOwnedProps {
@@ -11,18 +9,18 @@ interface NFTsOwnedProps {
 
 export function NFTsOwned({ isLoading, setSelectedTokenId }: NFTsOwnedProps) {
   const { chainInfo, wallet } = useConnection();
-  const [ownedNFTs, setOwnedNFTs] = useState<number[]>([]);
+  const [ownedNFTs, setOwnedNFTs] = useState<readonly bigint[]>([]);
 
-  const { data, refetch } = useReadContract({
+  const { data, refetch } = useReadSimpleNftGetNfTsByWallet({
     address: chainInfo.contractAddress,
-    abi,
-    functionName: "getNFTsByWallet",
     args: [wallet.address],
   });
 
   useEffect(() => {
     refetch();
-    setOwnedNFTs(data as unknown as number[]);
+    if (data) {
+      setOwnedNFTs(data);
+    }
   }, [data, isLoading, refetch]);
 
   return (
@@ -30,7 +28,7 @@ export function NFTsOwned({ isLoading, setSelectedTokenId }: NFTsOwnedProps) {
       <h2 className="header text-center">Your NFTs</h2>
       {ownedNFTs && ownedNFTs.length > 0 ? (
         <ul className="w-full flex items-center flex-wrap">
-          {ownedNFTs.map((nft: number) => (
+          {ownedNFTs.map((nft: bigint) => (
             <button
               key={nft}
               className="card-secondary max-w-[180px] text-center"

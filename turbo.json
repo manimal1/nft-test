@@ -18,6 +18,9 @@
     },
     "deploy": {
       "dependsOn": ["^deploy"]
+    },
+    "generate": {
+      "dependsOn": ["^generate"]
     }
   }
 }

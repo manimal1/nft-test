@@ -1,18 +1,16 @@
-import { useWaitForTransactionReceipt, useWriteContract } from "wagmi";
+import { useWaitForTransactionReceipt } from "wagmi";
+import { useWriteSimpleNftMint } from "~/generated";
 import { useConnection } from "~/providers/ConnectionProvider";
-import { abi } from "../lib/artifacts/contracts/SimpleNFT.sol/SimpleNFT.json";
 
 export function useMintNft() {
   const { chainInfo, wallet } = useConnection();
 
-  const { data: contractHash, isPending, writeContract, error: contractError } = useWriteContract();
+  const { data: contractHash, isPending, writeContract, error: contractError } = useWriteSimpleNftMint();
 
   const mintNFT = async () => {
     try {
       writeContract({
         address: chainInfo.contractAddress,
-        abi,
-        functionName: "mint",
         args: [wallet.address],
       });
     } catch (error) {

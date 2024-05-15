@@ -1,20 +1,18 @@
 import { Address } from "viem";
-import { useWaitForTransactionReceipt, useWriteContract } from "wagmi";
+import { useWaitForTransactionReceipt } from "wagmi";
+import { useWriteSimpleNftLend } from "~/generated";
 import { useConnection } from "~/providers/ConnectionProvider";
-import { abi } from "../lib/artifacts/contracts/SimpleNFT.sol/SimpleNFT.json";
 
 export function useLendNft() {
   const { chainInfo } = useConnection();
 
-  const { data: contractHash, error: contractError, isPending, writeContract } = useWriteContract();
+  const { data: contractHash, error: contractError, isPending, writeContract } = useWriteSimpleNftLend();
 
   const lendNFT = async (tokenId: string, borrower: Address) => {
     try {
       writeContract({
         address: chainInfo.contractAddress,
-        abi,
-        functionName: "lend",
-        args: [Number(tokenId), borrower],
+        args: [BigInt(tokenId), borrower],
       });
     } catch (error) {
       console.error("Error lending out NFT:", error, contractError);
