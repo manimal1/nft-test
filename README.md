@@ -64,6 +64,14 @@ npm run compile
 npm run deploy
 ```
 
+### Generate Contract Functions with Wagmi
+
+Next, from the ROOT directory, run the generate script inside of the Web app. This generates specific read/write functions per contract and offers us proper typing for these functions. It also provides properly named and typed ABIs. These can all be found in the newly created `generated.ts` file in `./apps/web/src`. You can find the WAGMI config file that is used to generate this file at the root of the `/web` app in `wagmi.config.ts`.
+
+```
+npm run generate
+```
+
 ### Lets get building!!!
 
 ### Build
