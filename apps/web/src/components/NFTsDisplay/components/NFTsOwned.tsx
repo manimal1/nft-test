@@ -27,7 +27,7 @@ export function NFTsOwned({ isLoading, setSelectedTokenId }: NFTsOwnedProps) {
     <>
       <h2 className="header text-center">Your NFTs</h2>
       {ownedNFTs && ownedNFTs.length > 0 ? (
-        <ul className="w-full flex items-center flex-wrap">
+        <ul className="w-full flex items-center justify-center flex-wrap">
           {ownedNFTs.map((nft: bigint) => (
             <button
               key={nft}

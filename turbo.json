@@ -19,6 +19,9 @@
     "deploy": {
       "dependsOn": ["^deploy"]
     },
+    "deploy:lineatest": {
+      "dependsOn": ["^deploy:lineatest"]
+    },
     "generate": {
       "dependsOn": ["^generate"]
     }

@@ -2,6 +2,7 @@
   "name": "@nft/test",
   "version": "0.1.0",
   "devDependencies": {
+    "@nomicfoundation/hardhat-ignition-ethers": "^0.15.4",
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
     "@nomicfoundation/hardhat-viem": "2.0.1",
     "@openzeppelin/contracts": "^4.9.3",
@@ -13,8 +14,7 @@
     "compile": "hardhat compile",
     "test": "hardhat test",
     "deploy": "hardhat run scripts/deploy.ts",
-    "deploy:lineatest": "hardhat run scripts/deploy.ts --network lineaTestnet",
-    "deploy:mumbai": "hardhat run scripts/deploy.ts --network mumbai",
-    "build": "hardhat compile"
+    "deploy:lineatest": "hardhat run scripts/deploy.ts --network linea-sepolia",
+    "deploy:mumbai": "hardhat run scripts/deploy.ts --network mumbai"
   }
 }

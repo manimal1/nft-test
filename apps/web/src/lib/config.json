@@ -4,6 +4,6 @@
     "symbol": "LineaETH",
     "blockExplorer": "https://sepolia.lineascan.build",
     "rpcUrl": "https://rpc.sepolia.linea.build",
-    "contractAddress": "0x96208E22D7Ead2e255D23b05B00771A4FD07F8e8"
+    "contractAddress": "0xc9a76113Ad16b2694F22fDf16C1Df730b2089661"
   }
 }

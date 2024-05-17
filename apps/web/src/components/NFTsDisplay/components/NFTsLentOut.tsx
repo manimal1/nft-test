@@ -26,7 +26,7 @@ export function NFTsLentOut({ isLoading }: NFTsLentOutProps) {
     <>
       <h2 className="header text-center">Your Lent Out NFTs</h2>
       {lentNFTs && lentNFTs.length > 0 ? (
-        <div className="w-full flex items-center flex-wrap">
+        <div className="w-full flex items-center justify-center flex-wrap">
           {lentNFTs
             .filter((nft: bigint) => nft !== 0n)
             .map((nft) => (
