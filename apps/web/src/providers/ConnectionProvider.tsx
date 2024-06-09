@@ -6,7 +6,7 @@ import { toAddress } from "~/utils";
 
 interface Wallet {
   address: Address;
-  accounts: any[];
+  accounts: any[]; // eslint-disable-line
   balance: string;
   chainId: string;
   isWalletConnecting: boolean;
@@ -102,6 +102,7 @@ export function ConnectionProvider({ children }: LoadingProviderProps) {
   return <ConnectionContext.Provider value={{ chainInfo, wallet }}>{children}</ConnectionContext.Provider>;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isChainSupported(chainId: string, config: any): boolean {
   return Object.keys(config).some((key) => key === chainId);
 }
