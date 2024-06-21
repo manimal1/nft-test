@@ -9,7 +9,7 @@ import { HardhatUserConfig } from "hardhat/config";
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.19",
+    version: "0.8.4",
   },
   paths: {
     artifacts: "../web/src/lib/artifacts",

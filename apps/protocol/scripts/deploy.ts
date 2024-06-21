@@ -3,17 +3,21 @@ import hre, { ethers } from "hardhat";
 import path from "path";
 
 async function main() {
-  const SimpleNFT = await ethers.getContractFactory("SimpleNFT");
+  // const SimpleNFT = await ethers.getContractFactory("SimpleNFT");
+  const NFTMarketplace = await ethers.getContractFactory("NFTMarketplace");
 
   console.log("Deploying SimpleNFT...");
 
   // make sure to pass the expected contract args on deploy
-  const simpleNFT = await SimpleNFT.deploy("MyNFT", "NFT");
-  await simpleNFT.waitForDeployment();
+  // const simpleNFT = await SimpleNFT.deploy("MyNFT", "NFT");
+  const marketplace = await NFTMarketplace.deploy();
+  // await simpleNFT.waitForDeployment();
+  await marketplace.waitForDeployment();
 
-  const contractAddress = await simpleNFT.getAddress();
+  // const contractAddress = await simpleNFT.getAddress();
+  const contractAddress = await marketplace.getAddress();
 
-  console.log("SimpleNFT deployed to:", contractAddress);
+  console.log("NFTMarketplace deployed to:", contractAddress);
 
   // get the network chain id in order to set it to the FE config props
   const chainId = (await hre.network.config.chainId?.toString()) ?? "undefined";
